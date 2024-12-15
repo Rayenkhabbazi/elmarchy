@@ -1,0 +1,33 @@
+/* About Us Section */
+.about-us {
+    background-color: #f4f4f4; /* Light gray background for contrast */
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* White background for content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .about-container h1 {
+    font-size: 32px;
+    color: #333; /* Dark gray text color */
+    margin-bottom: 20px;
+  }
+  
+  .about-container p {
+    font-size: 16px;
+    color: #666; /* Slightly lighter text color */
+    line-height: 1.6; /* Improve readability */
+    margin-bottom: 15px;
+  }
+  
+  .about-container strong {
+    color: #f44336; /* Highlight brand name with red */
+  }
+  

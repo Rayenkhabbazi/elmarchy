@@ -1,0 +1,143 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light nav-yellow border-bottom border-top p-0 navbar2">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" routerLink="">
+                <i class="fa fa-cart-shopping fs-4 text-danger"></i>
+                <span class="textBlur">eLMarchy</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+                    <!-- Home Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-danger me-1" 
+                           href="#" 
+                           id="navbarDropdown" 
+                           role="button" 
+                           data-bs-toggle="dropdown" 
+                           aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li *ngFor="let category of categories">
+                                <a class="dropdown-item" 
+                                   (click)="selectCategory(category.id)"
+                                   style="cursor: pointer;">
+                                    {{ category.name }}
+                                    <span *ngIf="category.description"> - {{ category.description }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Pages Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <li><a class="dropdown-item" routerLink="about">About Us</a></li>
+                            <li><a class="dropdown-item" routerLink="contactus">Contact Us</a></li>
+                            <li><a class="dropdown-item" href="/terms.html">Terms and Conditions</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold text-uppercase text-black me-1" routerLink="contactus">Contact Us</a>
+                    </li>
+
+                    <!-- Fixed Search Bar -->
+                    <li class="nav-item d-flex align-items-center">
+                        <input 
+                            type="text" 
+                            class="search-input"
+                            placeholder="Search products..." 
+                            [(ngModel)]="searchTerm"
+                            (input)="onSearch($event)"/>
+                        <button class="btn btn-outline-secondary" (click)="searchProducts()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <!-- Add suggestions dropdown if needed -->
+                        <div class="suggestions-dropdown" *ngIf="suggestions.length > 0">
+                            <div *ngFor="let product of suggestions" 
+                                 class="suggestion-item" 
+                                 (click)="viewProductDetails(product?.id || 0)">
+                                {{ product.name }}
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Cart Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-cart-shopping fs-5 text-secondary"></i>
+                            <span class="badge bg-danger" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end cart-dropdown" aria-labelledby="navbarDropdown3">
+                            <div class="cart-header">
+                                <h6 class="mb-0">Shopping Cart</h6>
+                                <span class="cart-count">{{ cartItemCount }} items</span>
+                            </div>
+                            <div class="cart-items-scroll">
+                                <div *ngIf="cartItems.length > 0" class="cart-items-container">
+                                    <div class="cart-item" *ngFor="let item of cartItems">
+                                        <div class="cart-item-image">
+                                            <img [src]="item.product.image_url" [alt]="item.product.name">
+                                        </div>
+                                        <div class="cart-item-details">
+                                            <h6 class="cart-item-name">{{ item.product.name }}</h6>
+                                            <div class="cart-item-price">
+                                                <span>{{ item.product.price | currency }}</span>
+                                                <div class="quantity-controls">
+                                                    <button (click)="updateQuantity(item.product.id, item.quantity - 1)">-</button>
+                                                    <span>{{ item.quantity }}</span>
+                                                    <button (click)="updateQuantity(item.product.id, item.quantity + 1)">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="remove-item" (click)="removeFromCart(item.product.id)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div *ngIf="cartItems.length === 0" class="empty-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <p>Your cart is empty</p>
+                                </div>
+                            </div>
+                            <div class="cart-footer" *ngIf="cartItems.length > 0">
+                                <div class="cart-total">
+                                    <span>Total:</span>
+                                    <span>{{ calculateTotal() | currency }}</span>
+                                </div>
+                                <button class="btn btn-danger w-100" (click)="navigateToCart()">
+                                    Checkout
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- User Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user fs-5 text-secondary"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                            <li *ngIf="isLoggedIn; else notLoggedIn">
+                                <a routerLink="/user-dashboard" class="dropdown-item">My Orders</a>
+                                <a (click)="logout()" class="dropdown-item">Disconnect</a>
+                            </li>
+                            <ng-template #notLoggedIn>
+                                <li>
+                                    <div class="d-flex justify-content-evenly mt-2">
+                                        <a routerLink="/login"><button class="btn btn-danger rounded-0 px-3">Login</button></a>
+                                        <a routerLink="/register"><button class="btn btn-danger rounded-0 px-3">Register</button></a>
+                                    </div>
+                                </li>
+                            </ng-template>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+

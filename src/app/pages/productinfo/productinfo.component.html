@@ -1,0 +1,41 @@
+<div class="product-info-container">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    Loading product details...
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-state">
+    {{ error }}
+  </div>
+
+  <!-- Product Details -->
+  <div class="product-details" *ngIf="!loading && !error && product">
+    <div class="product-image">
+      <img [src]="product.image_url" [alt]="product.name">
+    </div>
+    <div class="product-content">
+      <h1>{{ product.name }}</h1>
+      <div class="price">{{ product.price | currency }}</div>
+      <div class="description">{{ product.description }}</div>
+      
+      <div class="quantity-selector">
+        <button (click)="decreaseQuantity()">-</button>
+        <span>{{ quantity }}</span>
+        <button (click)="increaseQuantity()">+</button>
+      </div>
+      
+      <button class="add-to-cart" (click)="addToCart()">
+        Add {{ quantity }} to Cart
+      </button>
+      
+      <div class="additional-info">
+        <h3>Product Details</h3>
+        <ul>
+          <li>Category ID: {{ product.category_id }}</li>
+          <li>Stock Status: In Stock</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+/* Pagination Buttons */
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pagination-buttons button {
+    border: 1px solid #333; /* Navbar text color */
+    background-color: #fff; /* White background */
+    color: #333; /* Navbar text color */
+    padding: 8px 12px; /* Padding for buttons */
+    font-size: 14px; /* Text size */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Match other buttons */
+    transition: all 0.3s ease-in-out; /* Smooth hover effect */
+  }
+  
+  .pagination-buttons button:hover {
+    background-color: #f00; /* Red hover background */
+    color: #fff; /* White text on hover */
+  }
+  
+  .pagination-buttons button:disabled {
+    background-color: #f9f9f9; /* Disabled button background */
+    color: #b1b1b1; /* Disabled button text */
+    cursor: not-allowed; /* Disabled button cursor */
+    border-color: rgba(0, 0, 0, 0.1); /* Subtle border for disabled buttons */
+  }
+  
+  .pagination-buttons button.active {
+    background-color: #333; /* Active button background */
+    color: #fff; /* Active button text */
+    border-color: #333; /* Match active background */
+  }
+  
+  /* Add or update these styles */
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover; /* This ensures images cover the area without distortion */
+    object-position: center; /* Centers the image */
+  }
+  
+  .box-shadow {
+    height: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    /* Limit to 2 lines of text */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.4rem;
+  }
+  
+  /* Container for star rating and cart button */
+  .row {
+    margin-top: auto;
+  }
+  
+  /* Product grid layout */
+  .col-lg-3 {
+    margin-bottom: 20px;
+  }
+  
+  /* Optional: Add hover effect */
+  .card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  

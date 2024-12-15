@@ -1,0 +1,21 @@
+<div class="success-container">
+  <div class="success-card">
+    <div class="success-header">
+      <i class="fas fa-check-circle"></i>
+      <h1>Order Placed Successfully!</h1>
+    </div>
+    
+    <div class="order-details">
+      <h2>Order Details</h2>
+      <p><strong>Order ID:</strong> #{{ orderDetails?.orderId }}</p>
+      <p><strong>Total Amount:</strong> {{ orderDetails?.totalAmount | currency }}</p>
+      <p><strong>Delivery Address:</strong> {{ orderDetails?.deliveryAddress }}</p>
+      <p><strong>Status:</strong> {{ orderDetails?.status }}</p>
+    </div>
+
+    <div class="success-actions">
+      <button class="btn btn-primary" routerLink="/user-dashboard">View Orders</button>
+      <button class="btn btn-secondary" routerLink="/">Continue Shopping</button>
+    </div>
+  </div>
+</div> 

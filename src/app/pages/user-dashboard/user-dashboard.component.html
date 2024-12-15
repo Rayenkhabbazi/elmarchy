@@ -1,0 +1,109 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Welcome, {{ user?.first_name }}</h1>
+    <div class="tab-buttons">
+      <button 
+        [class.active]="activeTab === 'cart'"
+        (click)="switchTab('cart')"
+      >Shopping Cart</button>
+      <button 
+        [class.active]="activeTab === 'orders'"
+        (click)="switchTab('orders')"
+      >My Orders</button>
+      <button 
+        [class.active]="activeTab === 'profile'"
+        (click)="switchTab('profile')"
+      >Profile</button>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Tab -->
+  <div class="tab-content" *ngIf="activeTab === 'cart'">
+    <h2>Shopping Cart</h2>
+    <div class="cart-items" *ngIf="cartItems.length > 0">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <div class="item-details">
+          <img [src]="item.product.image_url" [alt]="item.product.name">
+          <div class="item-info">
+            <h3>{{ item.product.name }}</h3>
+            <p>{{ item.product.price | currency }}</p>
+          </div>
+        </div>
+        <div class="item-actions">
+          <button (click)="updateQuantity(item.product.id, item.quantity - 1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item.product.id, item.quantity + 1)">+</button>
+          <button class="remove-btn" (click)="removeFromCart(item.product.id)">Remove</button>
+        </div>
+      </div>
+      <div class="cart-summary">
+        <div class="cart-total">
+          <span>Subtotal:</span>
+          <span>{{ cartTotal | currency }}</span>
+        </div>
+        <div class="cart-total">
+          <span>Total:</span>
+          <span class="total-amount">{{ cartTotal | currency }}</span>
+        </div>
+      </div>
+      <div class="cart-footer">
+        <button class="checkout-btn" (click)="proceedToCheckout()">
+          Checkout & Delivery
+        </button>
+      </div>
+    </div>
+    <div class="empty-cart" *ngIf="cartItems.length === 0">
+      <p>Your cart is empty.</p>
+    </div>
+  </div>
+
+  <!-- Orders Tab -->
+  <div class="tab-content" *ngIf="activeTab === 'orders'">
+    <h2>Your Orders</h2>
+    <div class="orders-list" *ngIf="orders.length > 0">
+      <div class="order-card" *ngFor="let order of orders">
+        <div class="order-header">
+          <span>Order #{{ order.id }}</span>
+          <span>{{ order.order_date | date }}</span>
+          <span class="status">{{ order.status }}</span>
+        </div>
+        <div class="order-items">
+          <div class="item" *ngFor="let item of order.items">
+            <span>{{ item.name }}</span>
+            <span>{{ item.quantity }}x</span>
+            <span>{{ item.price | currency }}</span>
+          </div>
+        </div>
+        <div class="order-footer">
+          <span>Total: {{ calculateTotal(order.items) | currency }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="no-orders" *ngIf="orders.length === 0">
+      <p>You haven't placed any orders yet.</p>
+    </div>
+  </div>
+
+  <!-- Profile Tab -->
+  <div class="tab-content" *ngIf="activeTab === 'profile'">
+    <h2>Your Profile</h2>
+    <div class="profile-info">
+      <div class="info-group">
+        <label>Name</label>
+        <p>{{ user?.first_name }} {{ user?.last_name }}</p>
+      </div>
+      <div class="info-group">
+        <label>Email</label>
+        <p>{{ user?.email }}</p>
+      </div>
+      <div class="info-group">
+        <label>Phone</label>
+        <p>{{ user?.phone }}</p>
+      </div>
+      <div class="info-group">
+        <label>Address</label>
+        <p>{{ user?.address }}</p>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,380 @@
+/* Pagination Buttons */
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}/* Dropdown menu container */
+.navbar-nav .dropdown-menu {
+    background-color: #fff; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow */
+    padding: 10px 0;
+    min-width: 200px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Styling the dropdown links to make them look like buttons */
+.navbar-nav .dropdown-item {
+    display: inline-block; /* Make items inline-block to allow button-like styling */
+    padding: 10px 10px; /* Add padding for button-like appearance */
+    color: #333; /* Text color */
+    font-size: 14px; /* Font size for readability */
+    font-weight: 600; /* Bold text */
+    border-radius: 0px; /* Rounded corners for the "buttons" */
+    text-align: center; /* Center align text */
+    width: 100%; /* Ensure it takes up the full width of the dropdown */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    background-color: #f4f4f4; /* Light background color to make it stand out */
+    text-decoration: none; /* Remove underline from links */
+    cursor: pointer;
+}
+
+/* Hover effect for button-like dropdown items */
+.navbar-nav .dropdown-item:hover {
+    background-color: #f8f9fa; /* Red background on hover */
+    color: white; /* White text on hover */
+    cursor: pointer; /* Pointer cursor to indicate interactivity */
+}
+
+#lin {
+    text-decoration: none;            /* Remove the underline */
+    display: inline-block; /* Make items inline-block to allow button-like styling */
+    padding: 10px 10px; /* Add padding for button-like appearance */
+    color: #333; /* Text color */
+    font-size: 14px; /* Font size for readability */
+    font-weight: 10px; /* Bold text */
+    border-radius: 0px; /* Rounded corners for the "buttons" */
+    text-align: center; /* Center align text */
+    width: 100%; /* Ensure it takes up the full width of the dropdown */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    background-color: #f4f4f4; /* Light background color to make it stand out */
+    text-decoration: none;   /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the button-like link */
+#lin:hover {
+    background-color: #f44336; /* Red background on hover */
+    color: white; /* White text on hover */
+    cursor: pointer;                /* Change cursor to pointer when hovered */
+}
+
+/* Active state when the link (button) is clicked */
+#lin:active {
+    background-color: #b71c1c;        /* Even darker red when clicked */
+    transform: scale(0.98);            /* Slightly shrink the button on click for effect */
+}
+
+/* Active state styling */
+
+/* Styling for individual pagination buttons */
+.pagination-buttons button {
+    border: 1px solid #ccc; /* Subtle border color */
+    background-color: #fff; /* White background */
+    color: #333; /* Default text color */
+    padding: 10px 15px; /* Increased padding for larger buttons */
+    font-size: 16px; /* Larger text size */
+    border-radius: 25px; /* Rounded button with more curvature */
+    font-weight: 600; /* Slightly bolder text */
+    cursor: pointer; /* Pointer cursor for clickable buttons */
+    transition: all 0.3s ease; /* Smooth hover transition */
+    outline: none; /* Removes outline on focus */
+}
+
+/* Hover effect for pagination buttons */
+.pagination-buttons button:hover {
+    background-color: #f44336; /* Red background on hover */
+    color: #fff; /* White text on hover */
+    border-color: #f44336; /* Match the border with the hover color */
+}
+
+/* Disabled state for pagination buttons */
+.pagination-buttons button:disabled {
+    background-color: #f9f9f9; /* Light background for disabled state */
+    color: #b1b1b1; /* Gray text for disabled state */
+    cursor: not-allowed; /* Show "not-allowed" cursor for disabled state */
+    border-color: rgba(0, 0, 0, 0.1); /* Lighter border for disabled buttons */
+}
+
+/* Active state for the current page */
+.pagination-buttons button.active {
+    background-color: #333; /* Dark background for active button */
+    color: #fff; /* White text for active button */
+    border-color: #333; /* Match the active background */
+    font-weight: 700; /* Slightly bolder text for active button */
+}
+
+/* Styling for the previous and next buttons */
+.pagination-buttons button.prev, 
+.pagination-buttons button.next {
+    font-size: 18px; /* Larger font size for prev/next buttons */
+    font-weight: 700; /* Make prev/next buttons slightly bolder */
+    padding: 10px 20px; /* Adjust padding for prev/next buttons */
+}
+
+/* Adding icon or arrow styling to previous and next buttons */
+.pagination-buttons button.prev::before,
+.pagination-buttons button.next::before {
+    font-family: 'FontAwesome'; /* Use FontAwesome for arrows */
+    content: '\f104'; /* Left arrow for prev button */
+    margin-right: 5px; /* Space between icon and text */
+}
+/* Styling for the input field */
+.search-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 10px;
+    width: 200px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Right arrow icon for next button */
+.pagination-buttons button.next::before {
+    content: '\f105'; /* Right arrow for next button */
+    margin-left: 5px; /* Space between icon and text */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .pagination-buttons {
+        gap: 8px; /* Smaller gap on mobile */
+    }
+
+    .pagination-buttons button {
+        font-size: 14px; /* Smaller text on smaller screens */
+        padding: 8px 12px; /* Adjust button size for mobile */
+    }
+}
+
+.cart-item-preview {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cart-item-price {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.cart-actions {
+    padding: 10px;
+    text-align: center;
+}
+
+.empty-cart-message {
+    padding: 15px;
+    text-align: center;
+    color: #666;
+}
+
+.dropdown-menu {
+    min-width: 250px;
+}
+
+.dropdown-divider {
+    margin: 0.5rem 0;
+}
+
+.cart-dropdown {
+    width: 350px;
+    padding: 0;
+    max-height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.cart-header {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.cart-items-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.cart-items-container {
+    padding: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cart-item-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #666;
+    font-size: 13px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-controls button {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+}
+
+.quantity-controls button:hover {
+    background-color: #f8f9fa;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #dc3545;
+    padding: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.cart-item:hover .remove-item {
+    opacity: 1;
+}
+
+.cart-footer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 30px 20px;
+    color: #666;
+}
+
+.empty-cart i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #999;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+/* Custom scrollbar for cart items */
+.cart-items-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.cart-items-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.cart-items-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.suggestion-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f8f9fa;
+}

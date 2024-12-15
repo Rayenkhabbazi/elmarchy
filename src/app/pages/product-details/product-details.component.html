@@ -1,0 +1,80 @@
+<div class="product-details-container" *ngIf="product">
+  <div class="product-image">
+    <img [src]="product.image_url" alt="{{ product.name }}">
+  </div>
+  
+  <div class="product-info">
+    <h1>{{ product.name }}</h1>
+    
+    <!-- Product Rating -->
+    <div class="product-rating">
+      <div class="stars">
+        <i *ngFor="let star of getStarArray(product?.average_rating || 0)" 
+           class="fas fa-star"
+           [class.filled]="star === 1"></i>
+      </div>
+      <span class="rating-count" *ngIf="product?.reviews?.length">
+        ({{ product?.reviews?.length }} reviews)
+      </span>
+    </div>
+
+    <p class="product-description">{{ product.description }}</p>
+    <div class="product-price">
+      {{ product.price | currency }}
+    </div>
+    
+    <button class="add-to-cart-btn" (click)="addToCart(product)">
+      Add to Cart
+    </button>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+      <h2>Customer Reviews</h2>
+
+      <!-- Add Review Form -->
+      <div class="add-review-form">
+        <h3>Write a Review</h3>
+        <div class="rating-selector">
+          <span>Your Rating:</span>
+          <div class="stars">
+            <i *ngFor="let star of [1,2,3,4,5]" 
+               class="fas fa-star"
+               [class.filled]="star <= userRating"
+               (click)="setRating(star)"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" 
+                 [(ngModel)]="newReview.author" 
+                 placeholder="Your Name"
+                 class="form-control">
+        </div>
+        <div class="form-group">
+          <textarea [(ngModel)]="newReview.content" 
+                    placeholder="Your Review"
+                    class="form-control"></textarea>
+        </div>
+        <button (click)="submitReview()" 
+                [disabled]="isSubmittingReview || !newReview.content"
+                class="submit-review-btn">
+          Submit Review
+        </button>
+      </div>
+
+      <!-- Reviews List -->
+      <div class="reviews-list" *ngIf="product.reviews?.length">
+        <div class="review-item" *ngFor="let review of product.reviews">
+          <div class="review-header">
+            <span class="reviewer-name">{{ review.author || 'Anonymous' }}</span>
+            <div class="stars">
+              <i *ngFor="let star of getStarArray(review?.rating || 5)" 
+                 class="fas fa-star"
+                 [class.filled]="star === 1"></i>
+            </div>
+          </div>
+          <p class="review-content">{{ review.content }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
